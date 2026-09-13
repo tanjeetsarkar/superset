@@ -114,6 +114,18 @@ WEBDRIVER_BASEURL_USER_FRIENDLY = (
 )
 SQLLAB_CTAS_NO_LIMIT = True
 
+BI_ANALYST_AGGREGATOR_URL = os.getenv(
+    "BI_ANALYST_AGGREGATOR_URL",
+    "http://host.docker.internal:8000",
+)
+BI_ANALYST_SOURCE_SYSTEM = os.getenv("BI_ANALYST_SOURCE_SYSTEM", "superset")
+try:
+    BI_ANALYST_AGGREGATOR_TIMEOUT_SECONDS = float(
+        os.getenv("BI_ANALYST_AGGREGATOR_TIMEOUT_SECONDS", "10")
+    )
+except ValueError:
+    BI_ANALYST_AGGREGATOR_TIMEOUT_SECONDS = 10
+
 log_level_text = os.getenv("SUPERSET_LOG_LEVEL", "INFO")
 LOG_LEVEL = getattr(logging, log_level_text.upper(), logging.INFO)
 

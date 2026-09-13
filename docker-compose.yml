@@ -34,6 +34,7 @@ x-superset-volumes: &superset-volumes
   - superset_home:/app/superset_home
   - ./tests:/app/tests
   - superset_data:/app/data
+  - /home/voldemort/work/superset-analyst/extensions:/app/extensions
 x-common-build: &common-build
   context: .
   target: ${SUPERSET_BUILD_TARGET:-dev} # can use `dev` (default) or `lean`
@@ -133,7 +134,7 @@ services:
       # for custom settings, then point to it here. Do not use this example in production.
       - ./docker/superset-websocket/config.example.json:/home/superset-websocket/config.json:ro
     environment:
-      - PORT=8080
+      - PORT=8081
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - REDIS_SSL=false

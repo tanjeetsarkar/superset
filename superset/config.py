@@ -567,7 +567,7 @@ DEFAULT_FEATURE_FLAGS: dict[str, bool] = {
     "ENABLE_ADVANCED_DATA_TYPES": False,
     # Enable Superset extensions for custom functionality without modifying core
     # @lifecycle: development
-    "ENABLE_EXTENSIONS": False,
+    "ENABLE_EXTENSIONS": True,
     # Enable Matrixify feature for matrix-style chart layouts
     # @lifecycle: development
     "MATRIXIFY": False,
@@ -2476,8 +2476,17 @@ except ImportError:
     CUSTOM_DATABASE_ERRORS = {}
 
 
-LOCAL_EXTENSIONS: list[str] = []
-EXTENSIONS_PATH: str | None = None
+LOCAL_EXTENSIONS: list[str] = [
+    "/app/extensions/bi-analyst",
+]
+EXTENSIONS_PATH: str | None = "extensions"
+
+# -----------------------------------------------
+# BI Extension
+# -----------------------------------------------
+BI_ANALYST_AGGREGATOR_URL = "http://localhost:8000"
+BI_ANALYST_SOURCE_SYSTEM = "superset"
+BI_ANALYST_AGGREGATOR_TIMEOUT_SECONDS = 10
 
 # Default polling interval for tasks (seconds)
 TASK_ABORT_POLLING_DEFAULT_INTERVAL = 10
